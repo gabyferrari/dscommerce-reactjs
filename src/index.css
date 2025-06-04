@@ -195,18 +195,6 @@ nav a {
     align-items: center;
 }
 
-.dsc-btn-blue {
-    background-color: var(--dsc-color-btn-primary);
-    color: var(--dsc-color-btn-inverse);
-    border: none;
-}
-
-.dsc-btn-white {
-    background-color: var(--dsc-color-btn-inverse);
-    color: var(--dsc-color-btn-primary);
-    border: 1px solid var(--dsc-color-btn-primary);
-}
-
 .dsc-btn-next-page {
     border: 1px solid var(--dsc-color-btn-primary);
     padding: 10px;
