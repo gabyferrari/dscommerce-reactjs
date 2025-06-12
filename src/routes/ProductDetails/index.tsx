@@ -1,4 +1,3 @@
-
 import './styles.css'
 import ButtonInverse from "../../components/ButtonInverse";
 import ButtonPrimary from "../../components/ButtonPrimary";
@@ -20,7 +19,11 @@ const product: ProductDTO = {
         {
           id: 3,
           name: "Computadores"
-        }    
+        },
+        {
+          id: 4,
+          name: "Importados"
+        }   
     ]
 }
 
