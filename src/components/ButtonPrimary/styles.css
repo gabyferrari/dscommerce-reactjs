@@ -1,6 +1,6 @@
-
 .dsc-btn-blue {
     background-color: var(--dsc-color-btn-primary);
     color: var(--dsc-color-btn-inverse);
     border: none;
+    cursor: pointer;
 }
