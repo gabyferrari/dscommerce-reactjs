@@ -1,5 +1,9 @@
 import QueryString from "qs";
-import type { AccessTokenPayloadDTO, CredentialsDTO } from "../models/auth";
+import type {
+  AccessTokenPayloadDTO,
+  CredentialsDTO,
+  RoleEnum,
+} from "../models/auth";
 import { CLIENT_ID, CLIENT_SECRET } from "../utils/system";
 import type { AxiosRequestConfig } from "axios";
 import { requestBackend } from "../utils/requests";
@@ -55,6 +59,24 @@ export function isAuthenticated(): boolean {
   const tokenPayload = getAccessTokenPayload();
   if (tokenPayload && tokenPayload.exp * 1000 > Date.now()) {
     return true;
+  }
+  return false;
+}
+
+export function hasAnyRoles(roles: RoleEnum[]): boolean {
+  if (roles.length === 0) {
+    return true;
+  }
+
+  const tokenPayload = getAccessTokenPayload();
+
+  if (tokenPayload !== undefined) {
+    for (let i = 0; i < roles.length; i++) {
+      if (tokenPayload.authorities.includes(roles[i])) {
+        return true;
+      }
+    }
+    //returnroles.some(role => tokenData.authorities.includes(role)); outra forma para o for
   }
   return false;
 }
