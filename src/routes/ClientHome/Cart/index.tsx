@@ -67,8 +67,8 @@ export default function Cart() {
                 <div className="dsc-cart-total-container">
                   <h3>R$ {cart.total.toFixed(2)}</h3>
                 </div>
-              </div>
-            )}
+            </div>
+        )}
 
         <div className="dsc-btn-page-container">
           <div className="dsc-btn dsc-btn-blue">
