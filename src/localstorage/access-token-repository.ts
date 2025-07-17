@@ -9,5 +9,5 @@ export function get() : string | null {
 }
 
 export function remove() {
-    localStorage.removeItemItem(TOKEN_KEY);
+    localStorage.removeItem(TOKEN_KEY);
 }
