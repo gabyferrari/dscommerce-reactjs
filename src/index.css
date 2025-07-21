@@ -134,6 +134,10 @@ nav a {
     font-weight: 700;
 }
 
+.dsc-menu-item-not-active {
+    font-weight: 400;
+}
+
 .dsc-logged-user span {
     font-size: 14px;
     font-weight: 700;
