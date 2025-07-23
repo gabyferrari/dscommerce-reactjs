@@ -26,7 +26,7 @@ export default function Catalog() {
     productService.findPageRequest(queryParams.page, queryParams.name)
     .then(response => {
       const nextPage = response.data.content;
-      setProducts(prev => prev.concat(nextPage));
+      setProducts(products.concat(nextPage));
       setIsLastPage(response.data.last);
     });
     
@@ -57,9 +57,7 @@ export default function Catalog() {
           
           {
             !isLastPage &&
-            <div onClick={handleNextPageClick}>
-              <ButtonNextPage />
-            </div>
+              <ButtonNextPage onNextPage={handleNextPageClick}/>
           }
 
        </section>
