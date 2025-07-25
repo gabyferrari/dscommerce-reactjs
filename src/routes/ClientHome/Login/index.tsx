@@ -1,41 +1,72 @@
-import type React from 'react';
-import './styles.css'
-import { useContext, useState } from 'react';
-import type { CredentialsDTO } from '../../../models/auth';
-import * as authService from '../../../services/auth-service';
-import { useNavigate } from 'react-router-dom';
-import { ContextToken } from '../../../utils/context-token';
+import type React from "react";
+import "./styles.css";
+import { useContext, useState } from "react";
+import * as authService from "../../../services/auth-service";
+import { useNavigate } from "react-router-dom";
+import { ContextToken } from "../../../utils/context-token";
+import FormInput from "../../../components/FormInput";
+
+type FormDataInput = {
+  value: string;
+  id: string;
+  name: string;
+  type: string;
+  placeholder: string;
+  validation?: (value: string) => boolean;
+  message?: string;
+};
+
+type FormDataType = {
+  [key: string]: FormDataInput;
+};
+
 
 export default function Login() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [formData, setFormData] = useState<FormDataType>({
+    username: {
+      value: "",
+      id: "username",
+      name: "username",
+      type: "text",
+      placeholder: "Email",
+      validation: function (value: string) {
+        return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+          value.toLowerCase()
+        );
+      },
+      message: "Favor informar um email válido",
+    },
+    password: {
+      value: "",
+      id: "password",
+      name: "password",
+      type: "password",
+      placeholder: "Senha",
+    },
+  });
 
-    const [formData, setFormData] = useState<CredentialsDTO>({
-        username: '',
-        password: ''
-    });
+  const { setContextTokenPayload } = useContext(ContextToken);
 
-    const {setContextTokenPayload} = useContext(ContextToken);
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    authService.loginRequest({username: formData.username.value, password: formData.password.value})
+      .then((response) => {
+        authService.saveAccessToken(response.data.access_token);
+        setContextTokenPayload(authService.getAccessTokenPayload());
+        navigate("/cart");
+      })
+      .catch((error) => {
+        console.log("Erro no login", error);
+      });
+  }
 
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        authService.loginRequest(formData)
-            .then(response => {
-                authService.saveAccessToken(response.data.access_token);
-                setContextTokenPayload(authService.getAccessTokenPayload());
-                navigate("/cart");
-            })
-            .catch(error => {
-                console.log("Erro no login", error);
-            });
-            
-    }
-
-    function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-        const value = event.target.value;
-        const name = event.target.name;
-        setFormData({...formData, [name]: value});
-    }
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const value = event.target.value;
+    const name = event.target.name;
+    setFormData({ ...formData, [name]: {...formData[name], value: value} });
+  }
 
   return (
     <main>
@@ -45,23 +76,17 @@ export default function Login() {
             <h2>Login</h2>
             <div className="dsc-form-controls-container">
               <div>
-                <input
-                  name="username"
-                  value={formData.username}
+                <FormInput
+                  { ...formData.username }
                   className="dsc-form-control"
-                  type="text"
-                  placeholder="Email"
                   onChange={handleInputChange}
                 />
                 <div className="dsc-form-error"></div>
               </div>
               <div>
-                <input
-                  name="password"
-                  value={formData.password}
+                <FormInput
+                  { ...formData.password }
                   className="dsc-form-control"
-                  type="password"
-                  placeholder="Senha"
                   onChange={handleInputChange}
                 />
               </div>
