@@ -48,3 +48,45 @@ export function dirtyAndValidate(inputs: any, name: string) {
 
     return validate(dataDirty, name);
 }
+
+export function toDirtyAll(inputs: any) {
+    const newInputs: any = {};
+
+    for (const name in inputs) {
+        newInputs[name] = { ...inputs[name], dirty: "true" };
+    }
+
+    return newInputs;
+}
+
+export function validateAll(inputs: any) {
+    const newInputs: any = {};
+
+    for (const name in inputs) {
+
+        if (inputs[name].validation) {
+            const isInvalid = !inputs[name].validation(inputs[name].value);
+            newInputs[name] = { ...inputs[name], invalid: isInvalid.toString() };
+        }
+        else {
+            newInputs[name] = { ...inputs[name] }
+        }
+    }
+
+    return newInputs;
+}
+
+export function dirtyAndValidateAll(inputs: any) {
+    return validateAll(toDirtyAll(inputs));
+}
+
+export function hasAnyInvalid(inputs: any) {
+    for (const name in inputs) {
+
+        if (inputs[name].dirty === "true" && inputs[name].invalid === "true") {
+            return true;
+        }
+    }
+
+    return false;
+}
