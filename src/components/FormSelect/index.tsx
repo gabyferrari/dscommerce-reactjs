@@ -3,6 +3,7 @@ import Select from "react-select";
 export default function FormSelect(props: any) {
   const {
     className, 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     validation, 
     invalid = "false", 
     dirty = "false", 
@@ -10,12 +11,8 @@ export default function FormSelect(props: any) {
     ...selectProps 
   } = props;
 
-  function handleBlur(e: React.FocusEvent<HTMLInputElement>) {
-    if (validation && !validation(e.target.value)) {
-      console.log("Valor inválido");
-    }
-
-    onTurnDirty?.(props.name);
+  function handleBlur() {
+    onTurnDirty(props.name);
   }
 
   return (

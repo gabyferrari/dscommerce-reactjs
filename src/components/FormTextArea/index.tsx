@@ -1,5 +1,6 @@
 export default function FormTextArea(props: any) {
   const { 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     validation, 
     invalid = "false", 
     dirty = "false", 
@@ -7,12 +8,8 @@ export default function FormTextArea(props: any) {
     ...textareaProps 
   } = props;
 
-  function handleBlur(e: React.FocusEvent<HTMLInputElement>) {
-    if (validation && !validation(e.target.value)) {
-      console.log("Valor inválido");
-    }
-
-    onTurnDirty?.(props.name);
+  function handleBlur() {
+    onTurnDirty(props.name);
   }
 
   return (
