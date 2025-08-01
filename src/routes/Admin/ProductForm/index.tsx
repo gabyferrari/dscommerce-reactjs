@@ -78,7 +78,7 @@ export default function ProductForm() {
       .then(response => {
         setCategories(response.data);
       });
-  }, );
+  }, []);
 
   useEffect(() => {
     if (isEditing) {
@@ -88,7 +88,7 @@ export default function ProductForm() {
           setFormData(newFormData);
         });
     }
-  }, );
+  }, []);
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     setFormData(forms.updateAndValidate(formData, event.target.name, event.target.value));
@@ -114,10 +114,14 @@ export default function ProductForm() {
       requestBody.id = params.productId;
     }
 
-    productService.updateRequest(requestBody)
+    const request = isEditing 
+      ? productService.updateRequest(requestBody)
+      : productService.insertRequest(requestBody);
+
+    request
       .then(() => {
-          navigate("/admin/products")
-        });
+        navigate("/admin/products")
+      });
         
   }
 
