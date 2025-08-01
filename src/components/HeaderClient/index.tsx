@@ -1,10 +1,11 @@
 import "./styles.css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ContextToken } from "../../utils/context-token";
 import CartIcon from "../CartIcon";
 import iconAdmin from "../../assets/admin.svg";
 import * as authService from "../../services/auth-service";
-import { useContext } from "react";
-import { ContextToken } from "../../utils/context-token";
+
 import LoggedUser from "../LoggedUser";
 
 export default function HeaderClient() {

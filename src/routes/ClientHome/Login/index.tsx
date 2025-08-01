@@ -1,11 +1,11 @@
-import type React from "react";
 import "./styles.css";
-import { useContext, useState } from "react";
-import * as authService from "../../../services/auth-service";
-import * as forms from "../../../utils/forms";
+import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { ContextToken } from "../../../utils/context-token";
 import FormInput from "../../../components/FormInput";
+import type React from "react";
+import * as authService from "../../../services/auth-service";
+import * as forms from "../../../utils/forms";
 
 type FormDataInput = {
   value: string;

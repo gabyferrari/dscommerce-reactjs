@@ -1,5 +1,5 @@
-import type { AxiosRequestConfig } from "axios";
 import { requestBackend } from "../utils/requests";
+import type { AxiosRequestConfig } from "axios";
 
 export function findMe() {
   const config : AxiosRequestConfig = {

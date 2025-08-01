@@ -1,14 +1,14 @@
 import "./styles.css";
-import ButtonInverse from "../../../components/ButtonInverse";
-import ButtonPrimary from "../../../components/ButtonPrimary";
-import ProductDetailsCard from "../../../components/ProductDetailsCard";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import type { ProductDTO } from "../../../models/product";
-import * as productService from '../../../services/product-service';
-import * as cartService from '../../../services/cart-service';
 import { ContextCartCount } from "../../../utils/context-cart";
+import type { ProductDTO } from "../../../models/product";
+import ButtonInverse from "../../../components/ButtonInverse";
+import ButtonPrimary from "../../../components/ButtonPrimary";
+import ProductDetailsCard from "../../../components/ProductDetailsCard";
+import * as productService from "../../../services/product-service";
+import * as cartService from "../../../services/cart-service";
 
 export default function ProductDetails() {
 
@@ -28,7 +28,6 @@ export default function ProductDetails() {
     .catch(() => {
       navigate("/");
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleBuyClick() {
@@ -42,10 +41,12 @@ export default function ProductDetails() {
   return (
     <main>
       <section id="product-details-section" className="dsc-container">
+        
         {
           product &&
           <ProductDetailsCard product={product} />
         } 
+
         <div className="dsc-btn-page-container">
           <div onClick={handleBuyClick}>
             <ButtonPrimary text="Comprar" />

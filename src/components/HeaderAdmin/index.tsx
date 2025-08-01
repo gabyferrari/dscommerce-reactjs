@@ -1,6 +1,6 @@
 import "./styles.css";
-import homeIcon from '../../assets/home.svg';
-import productsIcon from '../../assets/products.svg';
+import homeIcon from "../../assets/home.svg";
+import productsIcon from "../../assets/products.svg";
 import LoggedUser from "../LoggedUser";
 import { NavLink } from "react-router-dom";
 

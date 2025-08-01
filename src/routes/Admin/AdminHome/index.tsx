@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import "./styles.css";
+import { useEffect, useState } from "react";
 import type { UserDTO } from "../../../models/user";
 import * as userService from "../../../services/user-service";
 

@@ -1,14 +1,10 @@
 import QueryString from "qs";
-import type {
-  AccessTokenPayloadDTO,
-  CredentialsDTO,
-  RoleEnum,
-} from "../models/auth";
 import { CLIENT_ID, CLIENT_SECRET } from "../utils/system";
-import type { AxiosRequestConfig } from "axios";
 import { requestBackend } from "../utils/requests";
-import * as accessTokenRepository from "../localstorage/access-token-repository";
+import type { AccessTokenPayloadDTO, CredentialsDTO, RoleEnum } from "../models/auth";
+import type { AxiosRequestConfig } from "axios";
 import jwtDecode from "jwt-decode";
+import * as accessTokenRepository from "../localstorage/access-token-repository";
 
 export function loginRequest(loginData: CredentialsDTO) {
   const headers = {

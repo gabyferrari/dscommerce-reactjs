@@ -1,15 +1,15 @@
-import './styles.css'
-import * as productService from '../../../services/product-service';
-import editIcon from '../../../assets/edit.svg';
-import deleteIcon from '../../../assets/delete.svg';
-import { useEffect, useState } from 'react';
-import type { ProductDTO } from '../../../models/product';
-import SearchBar from '../../../components/SearchBar';
-import ButtonNextPage from '../../../components/ButtonNextPage';
-import DialogInfo from '../../../components/DialogInfo';
-import DialogConfirmation from '../../../components/DialogConfirmation';
-import ButtonInverse from '../../../components/ButtonInverse';
-import { useNavigate } from 'react-router-dom';
+import "./styles.css";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import type { ProductDTO } from "../../../models/product";
+import editIcon from "../../../assets/edit.svg";
+import deleteIcon from "../../../assets/delete.svg";
+import SearchBar from "../../../components/SearchBar";
+import ButtonNextPage from "../../../components/ButtonNextPage";
+import DialogInfo from "../../../components/DialogInfo";
+import DialogConfirmation from "../../../components/DialogConfirmation";
+import ButtonInverse from "../../../components/ButtonInverse";
+import * as productService from "../../../services/product-service";
 
 type QueryParams = {
   page: number;
@@ -47,7 +47,6 @@ export default function ProductListing() {
         setProducts(products.concat(nextPage));
         setIsLastPage(response.data.last);
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queryParams]);
 
   function handleNewProductClick() {

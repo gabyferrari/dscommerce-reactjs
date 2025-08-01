@@ -1,10 +1,10 @@
-import './styles.css'
-import SearchBar from '../../../components/SearchBar';
-import CatalogCard from '../../../components/CatalogCard';
-import ButtonNextPage from '../../../components/ButtonNextPage';
-import * as productService from '../../../services/product-service';
-import { useEffect, useState } from 'react';
-import type { ProductDTO } from '../../../models/product';
+import "./styles.css";
+import { useEffect, useState } from "react";
+import type { ProductDTO } from "../../../models/product";
+import SearchBar from "../../../components/SearchBar";
+import CatalogCard from "../../../components/CatalogCard";
+import ButtonNextPage from "../../../components/ButtonNextPage";
+import * as productService from "../../../services/product-service";
 
 type QueryParams = {
   page: number;

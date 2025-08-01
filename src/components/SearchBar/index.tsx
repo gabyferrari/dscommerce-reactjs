@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import './styles.css'
+import "./styles.css";
+import { useState } from "react";
 
 type Props = {
   onSearch: (query: string) => void;
